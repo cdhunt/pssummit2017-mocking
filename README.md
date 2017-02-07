@@ -33,6 +33,7 @@ https://martinfowler.com/articles/mocksArentStubs.html
 
 ## What to Mock and When
 
+![](\lib\goals_priciples_smells.png)
 
 
 ## Mock script file invocation
