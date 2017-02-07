@@ -5,6 +5,9 @@
 # Brain Dump
 ## Definitions
 
+> Writing defect-free software is exceedingly difficult. Proof of correctness of real systems is still well beyond our abilities.
+> -- Gerard Meszaros, xUnit Test Patterns: Refactoring Test Code
+
 * Mock
 * Stub
 
