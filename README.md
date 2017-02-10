@@ -34,6 +34,54 @@ https://martinfowler.com/articles/mocksArentStubs.html
 
 [*xUnit Test Patterns: Refactoring Test Code* by Gerard Meszaros](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/)
 
+### Quotes from *xUnit Test Patterns*
+
+#### Basics
+
+> ensuring that tests do not depend on anything they did not set up themselves
+
+> [Test Double](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch23.html#ch23lev1sec1)(page [522](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch23.html#ch23lev1sec1)) for the objects that act as interfaces to the other applications
+
+>  functionally equivalent[Fake Objects](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch23.html#ch23lev1sec5) (page [551](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch23.html#ch23lev1sec5)) to speed up our tests
+
+#### Test Smells
+
+* **Project** smells are symptoms that something has gone wrong on the project. Their root cause is likely to be one or more of the code or behavior smells.
+
+* **Behavior** smells are encountered when we compile or run tests. The most common behavior smell is [Fragile Tests](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch16.html#ch16lev1sec3). It arises when tests that once passed begin failing for some reason.
+
+  *  [Frequent Debugging](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch16.html#ch16lev1sec4) is a sign that the unit tests are lacking in coverage or are trying to test too much functionality at once.
+
+* **Code** smells...typically affect maintenance cost of tests, they may also be early warning signs of behavior smells to follow.
+
+  *  Tests should be simple, linear sequences of statements. 
+
+    ​
+
+#### Economics of Test Automation
+
+Ideal
+
+![image](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/graphics/f03fig01.gif)
+
+* Goal: Tests as Specification
+* Goal: Bug Repellent
+* Goal: Defect Localization
+* Goal: Tests as Documentation
+* Goal: Tests as Safety Net
+* Goal: Do No Harm
+* Goal: Fully Automated Test
+* Goal: Self-Checking Test
+* Goal: Repeatable Test
+* Goal: Simple Tests
+* Goal: Expressive Tests
+* Goal: Separation of Concerns
+* Goal: Robust Test
+
+> #### Tests Should Help Us Understand the SUT
+
+> a library of [Test Utility Methods](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch24.html#ch24lev1sec2) that constitute a domain-specific testing language
+
 ## What to Mock and When
 
 ![](/lib/goals_priciples_smells.png)
