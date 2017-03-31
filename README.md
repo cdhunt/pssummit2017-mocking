@@ -26,11 +26,17 @@ https://martinfowler.com/articles/mocksArentStubs.html
 >
 >**Mocks** objects pre-programmed with expectations which form a specification of the calls they are expected to receive.
 
-**System Under Test**, or rather the abbreviation SUT.
+**System Under Test** (SUT), or rather the abbreviation SUT.
 
-**state verification**: which means that we determine whether the exercised method worked correctly by examining the state of the SUT and its collaborators after the method was exercised
+**State Verification**: which means that we determine whether the exercised method worked correctly by examining the state of the SUT and its collaborators after the method was exercised
 
 > Mocks use **behavior verification**: check to see if the system made the correct calls
+>
+> [State Verification](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch21.html#ch21lev1sec1) (page [462](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch21.html#ch21lev1sec1)) is done using assertions and is the simpler of the two approaches. [Behavior Verification](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch21.html#ch21lev1sec2) (page [468](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch21.html#ch21lev1sec2)) is more complicated and builds on the assertion techniques we use for verifying state.
+
+**Depended-on Component** (DOC), An individual class or a large-grained component on which the system under test (SUT) depends. 
+
+> The [**test fixture**](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/gloss01.html#gloss01_162) is everything we need to have in place to exercise the SUT. Typically, it includes at least an instance of the class whose method we are testing.
 
 [*xUnit Test Patterns: Refactoring Test Code* by Gerard Meszaros](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/)
 
@@ -56,7 +62,8 @@ https://martinfowler.com/articles/mocksArentStubs.html
 
   *  Tests should be simple, linear sequences of statements. 
 
-    ​
+
+  https://dev.to/ruidfigueiredo/what-exactly-is-a-unit-in-unit-testing
 
 #### Economics of Test Automation
 
@@ -82,9 +89,39 @@ Ideal
 
 > a library of [Test Utility Methods](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/ch24.html#ch24lev1sec2) that constitute a domain-specific testing language
 
+[Test Automation Manfiesto](http://xunitpatterns.com/~gerard/xpau2003-test-automation-manifesto-paper.pdf)
+
 ## What to Mock and When
 
 ![](/lib/goals_priciples_smells.png)
+
+
+
+####  Use the Front Door First
+
+Use the interface the client is expected to use.
+
+**Figure 6.7.** A round-trip test interacts with the SUT only via the front door. The test on the right replaces a DOC with a Fake Object to improve its repeatability or performance.
+
+![image](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/graphics/f06fig07.gif)
+
+**Figure 6.8.** A layer-crossing test can interact with the SUT via a "back door." The test on the left controls the SUT's indirect inputs using a Test Stub. The test on the right verifies its indirect outputs using a Mock Object.
+
+![image](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/graphics/f06fig08.gif)
+
+**Figure 6.10.** A Test Double being "injected" into a SUT by a test. A test can use Dependency Injection to replace a DOC with an appropriate Test Double. The DOC is passed to the SUT by the test as or after it has been created.
+
+![image](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/graphics/f06fig10.gif)
+
+#### Don't Modify the SUT
+
+May use a test double to control input and output and avoid unacceptable side effects.
+
+### Four distinct phases
+
+ fixture setup, exercise SUT, result verification, and fixture teardown.
+
+![image](https://www.safaribooksonline.com/library/view/xunit-test-patterns/9780131495050/graphics/f06fig06.gif)
 
 
 ## Mock script file invocation
