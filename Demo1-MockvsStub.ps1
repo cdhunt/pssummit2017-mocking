@@ -1,35 +1,38 @@
-#### Behavior Verification
-Describe 'Mock' {
 
-    Mock Get-ChildItem -ParameterFilter {$Recurse -eq $true} -MockWith {$null}
-    Mock Get-ChildItem -ParameterFilter {$Recurse -eq $false} -MockWith {$null}
+function MockMe ($Path) {
 
+    return (Get-ChildItem -Path $Path)
+}
 
-    It 'Should do a recursive GCI' {
-        $output = Get-ChildItem -Recurse
-        Assert-MockCalled Get-ChildItem  -Times 1 -ParameterFilter {$Recurse -eq $true}
+Describe 'Mock' { # Behavior Verification
+
+    Mock Get-ChildItem -ParameterFilter {$Path -eq 'C:\foo'} -MockWith {$null}
+    Mock Get-ChildItem -ParameterFilter {$Path -eq 'C:\bar'} -MockWith {$null}
+
+    It 'Should call GCI Foo' {
+        $output = MockMe 'C:\foo'
+        Assert-MockCalled Get-ChildItem  -Times 1 -ParameterFilter {$Path -eq 'C:\foo'}
+    }
+
+    It 'Should call GCI Bar' {
+        $output = MockMe 'C:\bar'
+        Assert-MockCalled Get-ChildItem  -Times 1 -ParameterFilter {$Path -eq 'C:\bar'}
     }
 }
 
-Describe 'Mock 2' {
+function StubMe ($Path) {
 
-    Mock Get-ChildItem -ParameterFilter {$Recurse -eq $false} -MockWith {$null}
-    Mock Get-ChildItem -ParameterFilter {$Recurse -eq $false} -MockWith {$null}
-
-    It 'Should do a recursive GCI' {
-        $output = Get-ChildItem
-        Assert-MockCalled Get-ChildItem  -Times 1 -ParameterFilter {$Recurse -eq $true}
-    }
-
+    return (Get-ChildItem -Path $Path)
 }
 
-#### State Verification
-Describe 'Stub' {
+Describe 'Stub' { # State Verification
 
-    Mock Get-ChildItem -MockWith {[PSCustomObject]@{Name="test.txt"; "LastWriteTime"=(Get-Date "2000-01-01")}}
+    Mock Get-ChildItem -MockWith {[PSCustomObject]@{Name="test.txt"
+                                     "LastWriteTime"=(Get-Date "2000-01-01")}}
 
     It 'Should return test.txt' {
-        $output = Get-ChildItem C:\Whatever
+        $output = StubMe C:\Whatever
         $output.Name | Should Be 'test.txt'
     }
 }
+
