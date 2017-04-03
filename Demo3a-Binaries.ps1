@@ -1,5 +1,4 @@
 Describe 'Binaries' {
-
     Context 'LocalHost' {
 
         function ping { return @'
@@ -16,7 +15,10 @@ Approximate round trip times in milli-seconds:
         $results = ping localhost
         $results | Should Match '0% loss'
     }
+}
 
+
+Describe 'Binaries Again' {
     Context 'Psudo-Behavior Verificaiton' {
 
         function ping { return $args[0] }
