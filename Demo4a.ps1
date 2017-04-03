@@ -5,7 +5,8 @@ New-Flancy -url $url -webschema @(
 
     Post '/nodes/' {
         try {
-            $body = (New-Object System.IO.StreamReader @($Request.Body, [System.Text.Encoding]::UTF8)).ReadToEnd()
+            $body = (New-Object System.IO.StreamReader @($Request.Body, `
+                        [System.Text.Encoding]::UTF8)).ReadToEnd()
             [PSCustomObject]@{Path=$Request.Path
                 Headers=$Request.Headers
                 Query=$Request.Query
@@ -16,4 +17,5 @@ New-Flancy -url $url -webschema @(
 )
 Start-Sleep -Seconds 1
 PING.EXE localhost -t
+
 
