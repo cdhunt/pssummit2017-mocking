@@ -1,5 +1,4 @@
 function MockMe ($Path) {
-
     return (Get-ChildItem -Path $Path)
 }
 

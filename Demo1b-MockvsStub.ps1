@@ -1,7 +1,6 @@
 function StubMe ($Path) {
 
     $files = Get-ChildItem -Path $Path
-
     return ($files | Select-Object -First 1 -ExpandProperty Name)
 }
 
