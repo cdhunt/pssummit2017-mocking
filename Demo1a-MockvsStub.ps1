@@ -23,20 +23,3 @@ Describe 'Mock' { # Behavior Verification
         }
     }
 }
-
-function StubMe ($Path) {
-
-    return (Get-ChildItem -Path $Path)
-}
-
-Describe 'Stub' { # State Verification
-
-    Mock Get-ChildItem -MockWith {[PSCustomObject]@{Name="test.txt"
-                                     "LastWriteTime"=(Get-Date "2000-01-01")}}
-
-    It 'Should return test.txt' {
-        $output = StubMe C:\Whatever
-        $output.Name | Should Be 'test.txt'
-    }
-}
-
