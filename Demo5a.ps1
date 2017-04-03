@@ -6,9 +6,9 @@ $ps = New-Object -TypeName Diagnostics.Process -Property @{Name = "IMadeItUp.exe
 
 # But we can use PowerShell's Dynamic Type System
 $ps = New-Object -TypeName Diagnostics.Process |
-    Add-Member -MemberType ScriptProperty -Name ProcessName -Value {"IMadeItUp.exe"} -Force -PassThru |
-    Add-Member -MemberType ScriptProperty -Name ID -Value {321} -Force -PassThru |
-    Add-Member -MemberType ScriptMethod -Name Kill -Value {"Killed $($this.id)"} -Force -PassThru
+    Add-Member ScriptProperty -Name ProcessName -Value {"IMadeItUp.exe"} -Force -PassThru |
+    Add-Member ScriptProperty -Name ID -Value {321} -Force -PassThru |
+    Add-Member ScriptMethod -Name Kill -Value {"Killed $($this.id)"} -Force -PassThru
 
 $ps
 $ps.kill()
