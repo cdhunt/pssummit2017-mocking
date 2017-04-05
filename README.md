@@ -1,8 +1,11 @@
 # You Can Mock Me As Much As You Like
 
-[Presenter Agreement](https://1drv.ms/w/s!AlAnSYrYluLwga9fEcrckVTkSfa8DA)
+
 
 # Brain Dump
+
+Notes from presentaiton development. Does not mirror the contents of the slides.
+
 ## Definitions
 
 > Writing defect-free software is exceedingly difficult. Proof of correctness of real systems is still well beyond our abilities.
