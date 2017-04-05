@@ -7,6 +7,6 @@ $scriptblock = {param([bool]$testing)
     }
 }
 
-Invoke-Command -ScriptBlock $scriptblock
+Invoke-Command -ComputerName SomeSystem -ScriptBlock $scriptblock
 
-Invoke-Command -ScriptBlock $scriptblock -ArgumentList $true
+Invoke-Command -ComputerName SomeSystem -ScriptBlock $scriptblock -ArgumentList $true
