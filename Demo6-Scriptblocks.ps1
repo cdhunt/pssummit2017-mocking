@@ -1,12 +1,13 @@
-$scriptblock = {param([bool]$testing)
-    if ($testing) {
-        Write-Output 'TestHostName'
-    }
-    else {
-        HOSTNAME
-    }
+$scriptblock = [scriptblock]{
+    Get-Process
 }
 
-Invoke-Command -ComputerName SomeSystem -ScriptBlock $scriptblock
+Describe 'ScriptBlock' {
 
-Invoke-Command -ComputerName SomeSystem -ScriptBlock $scriptblock -ArgumentList $true
+    Mock Get-Process {'Mocked PS'}
+
+    It 'Should Mock Get-Process' {
+        $results = $scriptblock.Invoke()
+        Assert-MockCalled Get-Process -Times 1
+    }
+}
